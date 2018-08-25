@@ -5,8 +5,6 @@ json_data = requests.get(url).json()
 getData = json_data['data']
 forging =''
 headers = {'cache-control': 'no-cache', 'content-type': 'application/json'}
-publicKey ='' # public key from your forging account
-password =''  # password you used to encrypt your passphrase
 
 # gets the forging status out of the api call
 if getData:
