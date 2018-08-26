@@ -1,15 +1,16 @@
 import requests
 import time
-ipAddress = ''
-port = ''
+ipAddress = '' # Your nodes ipaddress
+port = '' # The port you're using for your api 
+publicKey = '' # The public key of the forging delegate
+password = '' # The password you used for encrypting your passphrase
 
-
-def checkForging(ip, port):
-    url = 'http://' + ip + ':' + port + '/api/node/status/forging' # api link
+def checkForging(ip, port, publicKey, password):
+    url = 'http://' + ip + ':' + port + '/api/node/status/forging'
     json_data = requests.get(url).json()
     getData = json_data['data']
     headers = {'cache-control': 'no-cache', 'content-type': 'application/json'}
-    data = '{"publicKey": "","password": "","forging": true}'
+    data = '{"publicKey": "'+ publicKey +'","password": "' + password + '","forging": true}'
 
 # gets the forging status out of the api call
     for i in getData:
@@ -17,7 +18,7 @@ def checkForging(ip, port):
 
 # checks if forging is running
     if forging == True:
-	    print('Your node is forging :)')
+        print('Your node is forging :)')
 
     else:
 # if forging isn't running it should re enable it
@@ -35,4 +36,4 @@ def checkForging(ip, port):
             print('Something went wrong :\'(')
 
 if __name__ == '__main__':
-    checkForging(ipAddress, port)
+    checkForging(ipAddress, port, publicKey, password)
