@@ -7,9 +7,8 @@ forging =''
 headers = {'cache-control': 'no-cache', 'content-type': 'application/json'}
 
 # gets the forging status out of the api call
-if getData:
-	for i in getData:
-		forging = i['forging']
+for i in getData:
+	forging = i['forging']
 
 # checks if forging is running
 if forging == True:
@@ -23,12 +22,11 @@ else:
     data = '{"publicKey": "","password": "","forging": true}'
     response = requests.put('http://localhost:7000/api/node/status/forging', data=data, headers=headers)
     time.sleep(5)
-    if getData:
-        for i in getData:
-            forging2 = i['forging']
-            print(forging2)
-
-    if forging2 == True:
+    responseData = response.json()
+    getForgingResponseData = responseData['data']
+    for i in getForgingResponseData:
+        forging = i['forging']
+    if forging == True:
         print('Forging is enabled again')
     else:
         print('Something went wrong')
