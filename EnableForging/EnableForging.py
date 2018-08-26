@@ -1,9 +1,10 @@
 import requests
 import time
-ipAddress = '' # Your nodes ipaddress
-port = '' # The port you're using for your api 
-publicKey = '' # The public key of the forging delegate
-password = '' # The password you used for encrypting your passphrase
+import Config
+ipAddress = Config.ipAddress  # Gets your nodes ipaddress from the config file
+port = Config.port            # Gets the port you're using for your api from the config file
+publicKey = Config.publicKey  # Gets the public key of the forging delegate from the config file
+password = Config.password    # Gets the password you used for encrypting your passphrase from the config file
 
 def checkForging(ip, port, publicKey, password):
     url = 'http://' + ip + ':' + port + '/api/node/status/forging'
