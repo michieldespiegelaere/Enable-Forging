@@ -4,7 +4,13 @@
 
 <p>to be able to run the python script you need to run pyhton -m pip install requests first so the script can execute the api calls and cUrl requests.</p>
 
-<p>In EnableForging.py you need to add your public key and password that you used for your passphrase encryption in the data variable.</p>
+<p>In EnableForging.py you need to configere the following variables:</p>
+<ul>
+  <li>ipAddress = '' # Your nodes ipaddress</li>
+  <li>port = '' # The port you're using for your api</li>
+  <li>publicKey = '' # The public key of the forging delegate</li>
+  <li>password = '' # The password you used for encrypting your passphrase</li>
+</ul>
 
 <p>After installing the requests module you can start the script with python EnableForging.py or python3 EnableForging.py.</p>
 
