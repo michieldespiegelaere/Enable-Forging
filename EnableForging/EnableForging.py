@@ -12,16 +12,16 @@ password = Config.password         # Gets the password you used for encrypting y
 
 
 def checkForging(ip, port, publicKey, password):
-    LEVELS = {'debug': logging.DEBUG,
-          'info': logging.INFO,
-          'warning': logging.WARNING,
-          'error': logging.ERROR,
-          'critical': logging.CRITICAL}
+    #LEVELS = {'debug': logging.DEBUG,
+    #      'info': logging.INFO,
+    #      'warning': logging.WARNING,
+    #      'error': logging.ERROR,
+    #      'critical': logging.CRITICAL}
 
-    if len(sys.argv) > 1:
-        level_name = sys.argv[1]
-        level = LEVELS.get(level_name, logging.NOTSET)
-        logging.basicConfig(filename='/home/lisk/lisk-test/EnableForging.log', format='%(asctime)s %(levelname)s %(message)s',level=level)
+    #if len(sys.argv) > 1:
+    #    level_name = sys.argv[1]
+    #    level = LEVELS.get(level_name, logging.NOTSET)
+
 
     url = 'http://' + ip + ':' + port + '/api/node/status/forging'
     json_data = requests.get(url).json()
@@ -68,4 +68,5 @@ def checkForging(ip, port, publicKey, password):
                 print('Forging is disabled. We will try to enable it later')
                 logging.error(' Can\'t ennable forging')
 if __name__ == '__main__':
+    logging.basicConfig(filename='/home/lisk/lisk-test/EnableForging.log',level=logging.DEBUG, filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
     checkForging(ipAddress, port, publicKey, password)
