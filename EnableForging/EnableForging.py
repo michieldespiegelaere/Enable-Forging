@@ -58,5 +58,5 @@ def checkForging(ip, port, publicKey, password):
                 print('Forging is disabled. We will try to enable it later')
 
 if __name__ == '__main__':
-    logging.basicConfig(filename=logname, filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
+    logging.basicConfig(filename=logname, level=logging.INFO ,filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
     checkForging(ipAddress, port, publicKey, password)
