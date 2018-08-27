@@ -38,11 +38,11 @@ def checkForging(ip, port, publicKey, password):
         for i in getForgingResponseData:
             forging = i['forging']
         if forging == True:
-            print('Forging is enabled again :D')
             logging.info('Forging is enabled again')
+            print('Forging is enabled again :D')
         else:
-            print('Something went wrong :\'(')
             logging.warning('Forging is still disabled, trying to enable forging again for the last time')
+            print('Something went wrong :\'(')
             #still needs to be tested
             time.sleep(20)
             response
@@ -51,11 +51,11 @@ def checkForging(ip, port, publicKey, password):
             for i in getForgingResponseData:
                 forging = i['forging']
             if forging == True:
-                print('Forging is enabled again')
                 logging.info('Forging is enabled again')
+                print('Forging is enabled again')
             else:
-                print('Forging is disabled. We will try to enable it later')
                 logging.error('Can\'t ennable forging')
+                print('Forging is disabled. We will try to enable it later')
 
 if __name__ == '__main__':
     logging.basicConfig(filename=logname, filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
