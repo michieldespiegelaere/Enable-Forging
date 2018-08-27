@@ -35,6 +35,16 @@ def checkForging(ip, port, publicKey, password):
             print('Forging is enabled again :D')
         else:
             print('Something went wrong :\'(')
-
+            #still needs to be tested
+            time.sleep(20)
+            response
+            respondeData = response.json()
+            getForgingResponseData = respondeData['data']
+            for i in getForgingResponseData:
+                forging = i['forging']
+            if forging == True:
+                print('Forging is enabled again')
+            else:
+                print('Forging is disabled. We will try to enable it later')
 if __name__ == '__main__':
     checkForging(ipAddress, port, publicKey, password)
