@@ -9,18 +9,20 @@ port = Config.port                 # Gets the port you're using for your api fro
 publicKey = Config.publicKey       # Gets the public key of the forging delegate from the config file
 password = Config.password         # Gets the password you used for encrypting your passphrase from the config file
 #LOG_FILENAME = Config.log_filename # Gets the name for the log file from the config file
-LEVELS = {'debug': logging.DEBUG,
+
+
+def checkForging(ip, port, publicKey, password):
+    LEVELS = {'debug': logging.DEBUG,
           'info': logging.INFO,
           'warning': logging.WARNING,
           'error': logging.ERROR,
           'critical': logging.CRITICAL}
 
-if len(sys.argv) > 1:
-    level_name = sys.argv[1]
-    level = LEVELS.get(level_name, logging.NOTSET)
-    logging.basicConfig(filename='/home/lisk/lisk-test/EnableForging.log', format='%(asctime)s %(levelname)s %(message)s',level=level)
+    if len(sys.argv) > 1:
+        level_name = sys.argv[1]
+        level = LEVELS.get(level_name, logging.NOTSET)
+        logging.basicConfig(filename='/home/lisk/lisk-test/EnableForging.log', format='%(asctime)s %(levelname)s %(message)s',level=level)
 
-def checkForging(ip, port, publicKey, password):
     url = 'http://' + ip + ':' + port + '/api/node/status/forging'
     json_data = requests.get(url).json()
     getData = json_data['data']
@@ -38,7 +40,7 @@ def checkForging(ip, port, publicKey, password):
     else:
 # if forging isn't running it should re enable it
         print('Your node is not forging :\'(')
-        logging.warning('Forging is disabled, trying to enable forging again')
+        logging.warning(' Forging is disabled, trying to enable forging again')
         print('Enabling forging now...')
         response = requests.put(url, data=data, headers=headers)
         time.sleep(2)
@@ -48,10 +50,10 @@ def checkForging(ip, port, publicKey, password):
             forging = i['forging']
         if forging == True:
             print('Forging is enabled again :D')
-            logging.info('Forging is enabled again')
+            logging.info(' Forging is enabled again')
         else:
             print('Something went wrong :\'(')
-            logging.warning('Forging is still disabled, trying to enable forging again for the last time')
+            logging.warning(' Forging is still disabled, trying to enable forging again for the last time')
             #still needs to be tested
             time.sleep(20)
             response
@@ -61,9 +63,9 @@ def checkForging(ip, port, publicKey, password):
                 forging = i['forging']
             if forging == True:
                 print('Forging is enabled again')
-                logging.info('Forging is enabled again')
+                logging.info(' Forging is enabled again')
             else:
                 print('Forging is disabled. We will try to enable it later')
-                logging.error('Can\'t ennable forging')
+                logging.error(' Can\'t ennable forging')
 if __name__ == '__main__':
     checkForging(ipAddress, port, publicKey, password)
