@@ -9,7 +9,6 @@ port = Config.port                 # Gets the port you're using for your api fro
 publicKey = Config.publicKey       # Gets the public key of the forging delegate from the config file
 password = Config.password         # Gets the password you used for encrypting your passphrase from the config file
 #LOG_FILENAME = Config.log_filename # Gets the name for the log file from the config file
-test =''
 LEVELS = {'debug': logging.DEBUG,
           'info': logging.INFO,
           'warning': logging.WARNING,
@@ -19,10 +18,7 @@ LEVELS = {'debug': logging.DEBUG,
 if len(sys.argv) > 1:
     level_name = sys.argv[1]
     level = LEVELS.get(level_name, logging.NOTSET)
-    test = level
-    
-
-logging.basicConfig(filename='/home/lisk/lisk-test/EnableForging.log', format='%(asctime)s %(levelname)s %(message)s',level=test)
+    logging.basicConfig(filename='/home/lisk/lisk-test/EnableForging.log', format='%(asctime)s %(levelname)s %(message)s',level=level)
 
 def checkForging(ip, port, publicKey, password):
     url = 'http://' + ip + ':' + port + '/api/node/status/forging'
