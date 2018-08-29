@@ -37,3 +37,4 @@
 
 
 <p>P.S. script still in development for easier usage.</p>
+<p>donations allways welcome: 12056889420610179211L</p>
