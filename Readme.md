@@ -3,6 +3,7 @@
 <h2>Download</h2>
 
 <p>To download the script you can just clone the project or download the files with wget </p>
+<p>clone https://github.com/michieldespiegelaere/EnableForging.git</p>
 <p>wget https://raw.githubusercontent.com/michieldespiegelaere/EnableForging/master/EnableForging/EnableForging.py & wget https://raw.githubusercontent.com/michieldespiegelaere/EnableForging/master/EnableForging/Config.py</p>
 
 <h2>Setup</h2>
