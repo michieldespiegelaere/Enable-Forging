@@ -21,42 +21,43 @@ def checkForging(ip, port, publicKey, password):
 # gets the forging status out of the api call
     for i in getData:
         forging = i['forging']
+        print(forging)
 
 # checks if forging is running
-    if forging == True:
-        print('Your node is forging :)')
-
-    else:
 # if forging isn't running it should re enable it
+    if forging != True:
         print('Your node is not forging :\'(')
-        logging.warning('Forging is disabled, trying to enable forging again')
+        logging.warning('Forging is disabled, trying to enable it again')
         print('Enabling forging now...')
         response = requests.put(url, data=data, headers=headers)
         time.sleep(2)
         responseData = response.json()
+        print(responseData)
         getForgingResponseData = responseData['data']
         for i in getForgingResponseData:
             forging = i['forging']
-        if forging == True:
-            logging.info('Forging is enabled again')
-            print('Forging is enabled again :D')
-        else:
-            logging.warning('Forging is still disabled, trying to enable forging again for the last time')
+        if forging != True:
+            logging.warning('Forging is still disabled, trying to enable it for the last time')
             print('Something went wrong :\'(')
             #still needs to be tested
-            time.sleep(20)
-            response
+            time.sleep(10)
+            response = requests.put(url, data=data, headers=headers)
             respondeData = response.json()
             getForgingResponseData = respondeData['data']
             for i in getForgingResponseData:
                 forging = i['forging']
-            if forging == True:
-                logging.info('Forging is enabled again')
-                print('Forging is enabled again')
-            else:
+            if forging != True:
                 logging.error('Can\'t ennable forging')
-                print('Forging is disabled. We will try to enable it later')
+                print('Forging is disabled')
+            else:
+                logging.info('Your node started forging again')
+                print('Forging is enabled again')
+        else:
+            logging.info('Your node is forging')
+            print('Forging is enabled again :D')
+    else:
 
+        print('Your node is forging :)')
 if __name__ == '__main__':
     logging.basicConfig(filename=logname, level=logging.INFO ,filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
     checkForging(ipAddress, port, publicKey, password)
