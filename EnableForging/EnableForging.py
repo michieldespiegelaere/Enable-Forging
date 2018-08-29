@@ -26,9 +26,7 @@ def checkForging(ip, port, publicKey, password):
 # checks if forging is running
 # if forging isn't running it should re enable it
     if forging != True:
-        print('Your node is not forging :\'(')
         logging.warning('Forging is disabled, trying to enable it again')
-        print('Enabling forging now...')
         response = requests.put(url, data=data, headers=headers)
         time.sleep(2)
         responseData = response.json()
@@ -38,7 +36,6 @@ def checkForging(ip, port, publicKey, password):
             forging = i['forging']
         if forging != True:
             logging.warning('Forging is still disabled, trying to enable it for the last time')
-            print('Something went wrong :\'(')
             #still needs to be tested
             time.sleep(10)
             response = requests.put(url, data=data, headers=headers)
@@ -48,16 +45,12 @@ def checkForging(ip, port, publicKey, password):
                 forging = i['forging']
             if forging != True:
                 logging.error('Can\'t ennable forging')
-                print('Forging is disabled')
             else:
                 logging.info('Your node started forging again')
-                print('Forging is enabled again')
         else:
             logging.info('Your node is forging')
-            print('Forging is enabled again :D')
     else:
-
-        print('Your node is forging :)')
+        return forging == True
 if __name__ == '__main__':
     logging.basicConfig(filename=logname, level=logging.INFO ,filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
     checkForging(ipAddress, port, publicKey, password)
