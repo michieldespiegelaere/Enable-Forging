@@ -49,7 +49,7 @@ def checkForging(ip, port, publicKey, password):
         else:
             logging.info('Your node is forging')
     else:
-        logging.info('Your node is forging')
+        logging.info('Your is already forging')
 if __name__ == '__main__':
     logging.basicConfig(filename=logname, level=logging.INFO ,filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
     checkForging(ipAddress, port, publicKey, password)
