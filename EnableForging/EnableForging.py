@@ -36,7 +36,6 @@ def checkForging(ip, port, publicKey, password):
             forging = i['forging']
         if forging != True:
             logging.warning('Forging is still disabled, trying to enable it for the last time')
-            #still needs to be tested
             time.sleep(10)
             response = requests.put(url, data=data, headers=headers)
             respondeData = response.json()
@@ -50,7 +49,7 @@ def checkForging(ip, port, publicKey, password):
         else:
             logging.info('Your node is forging')
     else:
-        return forging == True
+        logging.info('Your node is forging')
 if __name__ == '__main__':
     logging.basicConfig(filename=logname, level=logging.INFO ,filemode='a+', format='%(asctime)s %(levelname)s %(message)s')
     checkForging(ipAddress, port, publicKey, password)
